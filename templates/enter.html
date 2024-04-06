@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>스와이프 갤러리</title>
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='enter.css') }}">
+  
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="enter_star.js"></script>
+</head>
+<body>
+    <div class="wrap">
+      <h1 style="color: white;">원하는 페이지를 <span>골라주세요!!</span></h1>
+
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="inner">
+            <div class="con">
+              <a href="/consulting">
+              <img src="{{ url_for('static', filename='img/consult_input.jpg') }}" alt="이미지 없음">
+              </a>
+              <h2>상담 학생 입력</h2>
+              <p>상담 학생의 내용을 입력하는 공간입니다.</p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="inner">
+            <div class="con">
+              <a href="/manage">
+              <img src="{{ url_for('static', filename='img/consult_emotion.jpg') }}" alt="이미지 없음">
+              </a>
+              <h2>상담 학생 관리</h2>
+              <p>상담 학생의 감정상태를 확인하는 공간입니다.</p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="inner">
+            <div class="con">
+                <img src="{{ url_for('static', filename='img/consult_schedule.jpg') }}" alt="이미지 없음">
+              <h2>상담 학생 일정</h2>
+              <p>상담 학생의 일정을 관리하는 공간입니다.</p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="inner">
+            <div class="con">
+              <img src="{{ url_for('static', filename='img/else.jpg') }}" alt="이미지 없음">
+              <h2>페이지 미정</h2>
+              <p>To be continue...</p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="inner">
+            <div class="con">
+              <img src="{{ url_for('static', filename='img/else2.jpg') }}" alt="이미지 없음">
+              <h2>페이지 미정</h2>
+              <p>To be continue...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <canvas class="background"></canvas>
+      <script src="static/enter_star.js"></script>
+
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+
+      <div class="swiper-pagination"></div>
+  </div>
+
+  <script>
+    var swiper = new Swiper(".wrap", {
+      pagination: {
+	    el: ".swiper-pagination",
+	    type: "fraction",
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      slidesPerView: "auto",
+      spaceBetween: 50,
+      loop: true,
+      centeredSlides: true,
+      speed: 1000,
+      direction: "horizontal",
+      effect: "coverflow",
+      coverflowEffect: {
+        rotate: 50,
+        stretch: -100,
+        depth: 400,
+        modifier: 1,
+        slideShadows: false
+      }
+    });
+  </script>
+</body>
+</html>

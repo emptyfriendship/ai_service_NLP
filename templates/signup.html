@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='log.css') }}">
+</head>
+<body>
+    <section id="back2">
+        <div class="container">
+          <div class="user signinBx">
+            <div class="formBx">
+              <form action="">
+                <h2>Create an account</h2>
+                <input type="text" placeholder="Username" id="username2" name="username2">
+                <input type="text" placeholder="Email Address" id="email2" name="email2">
+                <input type="password" placeholder="Create Password" id="pwd2" name="pwd2">
+                <input type="submit" value="Sign Up">
+                <p class="signup">Already have an account? <a href="/login">Sign in.</a></p>
+              </form>
+            </div>
+            <div class="imgBx"><img src="{{ url_for('static', filename='img/img2.jpg') }}" alt="이미지" width="400px" height="500px"></div>
+          </div>
+        </div>
+    </section>
+</body>
+</html>
