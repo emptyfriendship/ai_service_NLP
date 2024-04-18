@@ -133,7 +133,7 @@ def schedule():
 
 @app.route('/')
 def main():
-    return render_template('index.html')  
+    return render_template('main.html')  
 
     
 # app.py 파일이 'python app.py'로 시작되었을 때 서버를 시작하겠다 라는 의미.
