@@ -17,18 +17,6 @@ app.secret_key = 'kmj'
 db = pymysql.connect(host='127.0.0.1', user='root', password='1214', db='user')
 cursor = db.cursor()
 
-def line_graph(x,positive,negative,names):
-    plt.rc('font',family='Malgun Gothic')
-    plt.plot(x,positive,marker = 'o',label='positive')
-    plt.plot(x,negative,marker = 'o',label='negative')
-    plt.title('{}의 감정상태 변화'.format(names))
-    plt.grid()
-    plt.xticks(rotation=45)
-    plt.legend()
-    plt.savefig('static/img/line_plot.png')
-
-# 사용자의 uersname과 password를 input으로 받는다.
-# form action을 통해 login_check로 redirect한다.
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -79,18 +67,14 @@ def manage():
         numbers = request.form['numbers']
 
         if names and numbers:
-            sql = "SELECT distinct * FROM user.consult_info2;"
-            cursor.execute(sql)
+            sql = "SELECT distinct consult_day, positive FROM user.consult_info2 where student_name = %s;"
+            cursor.execute(sql,names)
             result = cursor.fetchall()
 
-            matplotlib.use('Agg')
+            r = [[names],[str(i[0]) for i in result],[float(i[1]) for i in result]]
 
-            x = [str(i[2]) for i in result]
-            positive = [float(i[-1]) for i in result]
-            negative = [100-float(i[-1]) for i in result]
-
-            line_graph(x,positive,negative,names)
-
+            return render_template('manage.html', data = r)
+    
     return render_template('manage.html')
 
 @app.route('/consulting')
@@ -124,6 +108,28 @@ def consulting():
             return redirect(url_for('enter'))
         
     return render_template('consulting.html')
+
+@app.route('/schedule')
+def schedule():
+    sql = "SELECT distinct * FROM user.my_schedule order by schedule_date;"
+    cursor.execute(sql)
+    schedule_info = cursor.fetchall()
+
+    schedule_date = request.args.get('schedule_date')
+    schedule_time = request.args.get('schedule_time')
+    about_schedule = request.args.get('schedule_info')
+
+    if schedule_date and about_schedule:
+        sql = "INSERT INTO my_schedule (schedule_date, schedule_time, about_schedule) VALUES (%s, %s, %s)"
+        cursor.execute(sql,(schedule_date, schedule_time, about_schedule))
+
+        data = cursor.fetchall()
+    
+        if not data:
+            db.commit()
+            return render_template('schedule.html',data = schedule_info)
+
+    return render_template('schedule.html', data = schedule_info)
 
 @app.route('/')
 def main():

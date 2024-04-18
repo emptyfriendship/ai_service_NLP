@@ -5,23 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>학생의 감정 상태 예측</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <script src="https//kit.fontawesome.com/a076d05399.js"></script>
 </head>
 
 <body>
-  </div>
-
-  <div class="img"></div>
-  <div class="center">
-    <div class="title">간편한 키워드 입력으로 전문 지식 없이도 누구나</div>
-    <div class="sub_title"> 자신의 감정 상태를 빠르게 파악하고 관리할 수 있습니다.</div>
-    <div class="btns">
-      <form action="/login" method="get">
-        <button class="btn btn-swap">로그인 <span>시작하기</span></button>
-      </form>
+  <div class="main_container">
+    <div class="banner">
+        <p style="font-size: 30px;">상담사분들을 위한 <br> 맞춤 케어 서비스</p>
+        <button type="button" class="btn_login" onclick="location.href = '/login'">로그인</button>
+        <div class="developer_info">
+            <b><p style="font-size: 20px;">Team 1 developed</p></b>
+        </div>
     </div>
-  </div>
-
-  <!-- <script src="static/enter_star.js"></script> -->
+</div>
 </body>
 </html>

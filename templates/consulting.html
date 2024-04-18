@@ -8,106 +8,107 @@
 
 <style>
 
-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 98vh;
-    background-color: #84c8fcbd;
-    font-family: "Orbit", sans-serif;
-  }
-    input, select {
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Black+Han+Sans&family=Cute+Font&family=Gugi&family=IBM+Plex+Sans+KR&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&family=Orbit&display=swap');
+
+
+* {
+    color: white;
+    font-family: "Orbit", serif;
+}
+
+.main_container {
+    max-width: 360px;
+    height: 720px;
+    background-color: #001d5b;
+    margin: 0 auto;
+    padding: 20px;
+    border: 3px solid white;
+    background-size: cover; /* 이미지를 가득 채움 */
+    background-position: center; /* 이미지 중앙 정렬 */
+}
+
+.banner {
+    padding : 20px 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.banner img {
+    margin-bottom: 20px;
+}
+
+button {
     width: 100%;
-    padding: 5px;
-    outline: none;
     height: 50px;
-    border: 3px solid rgb(195, 195, 195);
-    font-size: 20px;
-  }
+    border: 1px solid white;
+    background-color: rgba(0, 0, 0, 0);
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
 
-    textarea {
+.forms input,select {
     width: 100%;
-    padding: 5px;
-    outline: none;
-    height: 150px;
-    border: 3px solid rgb(195, 195, 195);
+    height: 40px;
+    border: 2px solid #fff;
+    background-color: rgba(0, 0, 0, 0);
+    margin-bottom: 10px;
+    color: white;
+}
+
+.forms textarea {
+    width: 100%;
+    height: 140px;
+    border: 2px solid #fff;
+    background-color: rgba(0, 0, 0, 0);
+    margin-bottom: 10px;
+    color: white;
+}
+
+.forms label{
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.for_login {
+    margin-top: 10px;
+    width: 102%;
     font-size: 20px;
-  }
-
-  label {
-    line-height: 1.9rem;
-  }
-
-  input[type="submit"] {
-   margin : 0 auto;
-   font-weight: bold;
-   width: 102.5%;
-   background-color: #84c8fcbd;
-   border: 0;
-   text-align: center;
-   color: white;
-  }
-
-  select {
-    width: 102.3%;
-  }
-
- form {
-   padding: 20px 40px;
-   background: white;
-   width: 600px;
-   height: 900px;
-   box-shadow: 0 15px 50px rgba(0,0,0,0.1);
-   margin: 0 auto;
- }
-
- .form-control{
-  margin-bottom: 20px;
- }
-
- form h1{
-  text-align: center;
-  margin-bottom: 60px;
- }
+}
 
 </style>
 </head>
 <body>
-  <form>
-    <h1>상담 내용 입력</h1>
-    <div class="form-control">
-      <label>상담 학생 이름</label>
-      <input type="text" id="student_name" name="student_name"/>
-    </div>
+  <div class="main_container">
+    <div class="banner">
+        <h1 style="margin-top: 10px">상담 내용 입력</h1>
+        <form class="forms">
 
-    <div class="form-control">
-      <label>상담 학생 번호</label>
-      <input type="text" id="student_num" name="student_num"/>
-    </div>
+          <label>상담 학생 이름</label>
+          <input type="text" id="student_name" name="student_name"/>
 
-    <div class="form-control">
-      <label>상담 날짜</label>
-      <input type="date" id="consult_date" name="consult_date"/>
-    </div>
+          <label>상담 학생 번호</label>
+          <input type="text" id="student_num" name="student_num"/>
+     
+          <label>상담 날짜</label>
+          <input type="date" id="consult_date" name="consult_date"/>
+          
+          <label>상담 분류</label>
+          <select name="subject" id="subject">
+            <option value="진로">진로</option>
+            <option value="스트레스">스트레스</option>
+            <option value="대인관계">대인관계</option>
+          </select>
 
-    <div class="form-control">
-      <label>상담 분류</label>
-      <select name="subject" id="subject">
-        <option value="진로">진로</option>
-        <option value="스트레스">스트레스</option>
-        <option value="대인관계">대인관계</option>
+          <label>상담 내용</label>
+          <textarea id="consultation" name="consultation" cols="30" rows="10" placeholder="1000자 이내로 입력해주세요"></textarea>
+    
+          <div class="for_login">
+              <input type="submit" style="font-weight: bolder; font-size: 15px;" value="제출">
+          </div>
 
-      </select>
+        </form>
     </div>
-
-    <div class="form-control">
-      <label>상담 내용</label>
-      <textarea id="consultation" name="consultation" cols="30" rows="10" placeholder="1000자 이내로 입력해주세요"></textarea>
-    </div>
-
-    <div class="form-control">
-      <input type="submit" value="Send" class="submit-btn" />
-    </div>
-  </form>
+  </div>
 </body>
 </html>

@@ -1,15 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Black+Han+Sans&family=Cute+Font&family=Gugi&family=IBM+Plex+Sans+KR&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&family=Orbit&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Diphylleia&family=Gowun+Batang&display=swap');
 
 * {
     color: white;
-    font-family: "Orbit", serif;
+    font-family: "Diphylleia", serif;
 }
 
 .main_container {
     max-width: 360px;
     height: 720px;
-    background-image: url('/static/img/index.jpeg');
+    background-image: url('index.jpeg');
     margin: 0 auto;
     padding: 20px;
     border: 3px solid rgb(0, 0, 0);
@@ -32,6 +31,4 @@ button {
     background-color: rgba(0, 0, 0, 0);
     margin-bottom: 10px;
     margin-top: 5px;
-    font-size: 20px;
 }
-

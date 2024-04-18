@@ -4,96 +4,151 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
   <style>
 
-    body {
-      align-items: center;
-      justify-content: center;
-      height: 98vh;
-      background-color: #03233cfd;
-      font-family: "Orbit", sans-serif;
-      padding-top: 60px;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Black+Han+Sans&family=Cute+Font&family=Gugi&family=IBM+Plex+Sans+KR&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&family=Orbit&display=swap');
 
-    input {
-      padding: 5px;
-      outline: none;
-      height: 50px;
-      border: 3px solid rgb(255, 255, 255);
-      width: 500px;
-      margin: 0 5px;
-      background-color: #03233cfd;
-      color: white;
-      font-size: 20px;
-    }
+* {
+    color: white;
+    font-family: "Orbit", serif;
+}
 
-    button {
-      padding: 5px;
-      outline: none;
-      height: 65px;
-      border: 3px solid rgb(255, 255, 255);
-      width: 200px;
-      margin: 0 5px;
-      background-color: #03233cfd;
-      color: white;
-    }
+.main_container {
+    max-width: 360px;
+    height: 720px;
+    background-color: #03233cfd;
+    margin: 0 auto;
+    padding: 20px;
+    border: 3px solid white;
+}
 
-    form {
-      padding: 20px 40px;
-      width: 60%;
-      height: 70%;
-      margin: 0 auto;
-      border: 1px solid white;
-    }
+.banner {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-    .form-control{
-      margin-bottom: 20px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
+.banner img {
+    margin-bottom: 20px;
+}
 
-    .form-control2{
-      margin : 0 auto;
-      margin-bottom: 20px;
-      display: flex;
-      flex-direction: row;
-      text-align: center;
-    }
+button {
+    width: 100%;
+    height: 50px;
+    border: 1px solid white;
+    background-color: rgb(64, 208, 224);
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
 
-    .for_h1{
-      text-align: center;
-      margin-bottom: 60px;
-      color: white;
-    }
+.forms input {
+    width: 100%;
+    height: 40px;
+    border: 2px solid #fff;
+    background-color: rgba(0, 0, 0, 0);
+    margin-bottom: 10px;
+    color: white;
+}
 
-.form-control img{
-    width: 550px;
-    height: 400px;
+.forms label{
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.for_login {
+    margin-top: 10px;
+    width: 102%;
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
 
   </style>
 </head>
 <body>
-  <div class="for_h1">
-    <h1>상담 학생의 감정상태를 확인</h1>
-  </div>
-  
-  <form action="" method="post">
-    <div class="student_info">
-      <div class="form-control">
-        <input type="text" id="names" name="names" placeholder="이름"/>
-        <input type="text" id="numbers" name="numbers" placeholder="번호"/>
-        <button type="submit">로그인</button>
-      </div>
-    </div>
+  <div class="main_container">
+    <div class="banner">
+        <h1 style="margin-top: 10px;">상담 학생의 <br>감정상태를 확인</h1>
+        <form class="forms" method="post">
+            <label for="names">이름</label>
+            <input type="text" id="names" name="names">
+     
+            <label for="numbers">학생 번호</label>
+            <input type="text" id="numbers" name="numbers">
+            
+            <div class="for_login">
+                <input type="submit" value="학생 조회">
+            </div>
+            <hr>
+        </form>
 
-    <div class="form-control">
-        <img src="{{ url_for('static', filename='img/line_plot.png') }}" alt="이미지 없음">
+        <div style="width:100%;">
+          <canvas id="canvas" width="360px" height="360px"></canvas>
+        </div>
     </div>
-    
-  </form>
+  </div>
 </body>
+
+{% if data %}
+<script>
+    new Chart(document.getElementById("canvas"), {
+        type: 'line',
+        data: {
+            labels: {{ data[1]|tojson }},
+            datasets: [{
+                label: 'positive',
+                data: {{ data[2]|tojson }},
+                borderColor: "rgba(64, 208, 224, 1)",
+                backgroundColor: "rgba(64, 208, 224, 0.5)",
+                fill: true,
+                lineTension: 0
+            }]
+        },
+        options: {
+            responsive: false,
+            title: {
+                display: true,
+                text: {{ data[0]|tojson }} + ' 학생의 감정 변화 그래프',
+                fontSize : 20,
+                fontColor : 'rgb(255,255,255)'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    ticks : {
+                      fontColor : 'rgba(255,255,255, 1)'
+                    },
+                    scaleLabel: {
+                        display: true
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        min : 0,
+                        max : 100,
+                        stepSize : 10,
+                        fontColor : 'rgba(255,255,255, 1)',
+                    },
+                    scaleLabel: {
+                        display: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+{% else %}
+<p>이름과 학생 번호를 입력해주세요</p>
+{% endif %}
+
 </html>

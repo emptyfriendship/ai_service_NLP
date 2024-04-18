@@ -7,21 +7,22 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='log.css') }}">
 </head>
 <body>
-  <section id="back1">
-    <div class="container">
-      <div class="user signinBx">
-        <div class="imgBx"><img src="{{ url_for('static', filename='img/img1.jpg') }}" alt="이미지" width="400px" height="500px"></div>
-        <div class="formBx">
-          <form action="" method="post">
-            <h2>Sign In</h2>
-            <input type="text" placeholder="Email" id="email" name="email">
-            <input type="password" placeholder="Password" id="password" name="password">
-            <input type="submit" value="Login">
-            <p class="signup">don't have an account? <a href="/signup">Sign up.</a></p>
-          </form>
-        </div>
-      </div>
+  <div class="main_container">
+    <div class="banner">
+        <h1 style="margin-top: 10px">LOGIN</h1>
+        <form class="forms" method="post">
+            <label for="id">ID</label>
+            <input type="text" id="email" name="email">
+     
+            <label for="password">PASSWORD</label>
+            <input type="password" id="password" name="password">
+            
+            <div class="for_login">
+                <input type="submit" style="font-weight: bolder; font-size: 15px;" value="로그인">
+            </div>
+        </form>
+        <p>don't have an account? <a href="/signup" style="text-decoration: none; color: yellow;">Sign up.</a></p>
     </div>
-  </section>
+  </div>
 </body>
 </html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>일정 관리 페이지</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='schedule_mobile.css') }}">
+</head>
+<body>
+    <div class="main_container">
+        <div class="banner">
+            <h2>My Schedule</h2>
+            <div class="for_schedule">
+                {% for i in data %}
+                <div class="my_schedules">
+                <p>날짜: {{ i[0] }} <br>
+                <p>시간: {{ i[1] }} <br>
+                <br>
+                일정: {{ i[2] }} <br></p>
+                </div>
+                {% endfor %}
+            </div>
+            <button onclick="openPopup()">일정 추가</button>
+            <button type="button" class="home" onclick="location.href = '/enter'">home</button>
+            <div id="popup" class="popup-overlay">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closePopup()">&times;</span>
+                    <h2>회원가입</h2>
+                    <form>
+                        <input type="date" id="schedule_date" name="schedule_date">
+                        <input type="time" id="schedule_time" name="schedule_time">
+                        <textarea id="schedule_info" name="schedule_info" cols="30" rows="10" placeholder="300자 이내로 입력해주세요"></textarea>
+                        <input type="submit" value="일정 추가">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+	function openPopup() {
+		var popup = document.getElementById("popup");
+		popup.style.visibility = "visible";
+		popup.style.opacity = "1";
+	}
+
+	function closePopup() {
+		var popup = document.getElementById("popup");
+		popup.style.visibility = "hidden";
+		popup.style.opacity = "0";
+	}
+</script>

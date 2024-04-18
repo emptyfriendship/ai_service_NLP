@@ -4,25 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='log.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='signup.css') }}">
 </head>
 <body>
-    <section id="back2">
-        <div class="container">
-          <div class="user signinBx">
-            <div class="formBx">
-              <form action="">
-                <h2>Create an account</h2>
-                <input type="text" placeholder="Username" id="username2" name="username2">
-                <input type="text" placeholder="Email Address" id="email2" name="email2">
-                <input type="password" placeholder="Create Password" id="pwd2" name="pwd2">
-                <input type="submit" value="Sign Up">
-                <p class="signup">Already have an account? <a href="/login">Sign in.</a></p>
-              </form>
-            </div>
-            <div class="imgBx"><img src="{{ url_for('static', filename='img/img2.jpg') }}" alt="이미지" width="400px" height="500px"></div>
-          </div>
-        </div>
-    </section>
+    <div class="main_container">
+      <div class="banner">
+          <h1 style="margin-top: 10px;">CREATE ACCOUNT</h1>
+          <form class="forms">
+              <label for="username2">ID</label>
+              <input type="text" id="username2" name="username2"/>
+              
+              <label for="email2">Email</label>
+              <input type="text" id="email2" name="email2"/>
+
+              <label for="password">PASSWORD</label>
+              <input type="password" id="pwd2" name="pwd2">
+              
+              <div class="for_login">
+                  <input type="submit" value="회원가입">
+              </div>
+          </form>
+
+          <p class="signup">Already have an account? <a href="/login" style="text-decoration: none; color: yellow;">Sign in.</a></p>
+      </div>
+  </div>
 </body>
 </html>
