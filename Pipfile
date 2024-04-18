@@ -5,6 +5,11 @@ name = "pypi"
  
 [packages]
 flask = "*"
+pymysql = "*"
+konlpy = "*"
+tensorflow = "*"
+keras = "*"
+json = "*"
  
 [requires]
 python_version = "3"
