@@ -4,4 +4,3 @@ konlpy==0.6.0
 tensorflow==2.13.0
 keras==2.13.1
 jsonschema==4.17.3
-Python==3.10.11
