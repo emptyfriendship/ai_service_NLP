@@ -1,8 +1,0 @@
-{
-  "functions": {
-    "api": {
-      "handler": "api/index.app",
-      "runtime": "python3.10"
-    }
-  }
-}
